@@ -63,3 +63,5 @@ class TodoList extends React.Component {
 }
 
 ReactDOM.render(<TodoApp />, mountNode);
+
+{this.props.f(this.props.id)}

@@ -6,28 +6,41 @@ class Column extends Component {
         super(props)
         this.state = {
             cardList: [],
-            cardNumber: Date.now()
+            cardNumber: Date.now(),
+                   
         }
-        this.addCard = this.addCard.bind(this);   
+        this.removeCard = this.removeCard.bind(this);
+               
     }
 
-    addCard() {
+    addCard = () => {
         this.setState( (state) => ({
-            cardList: state.cardList.concat(<Card number="state.cardNumber"/>),
+            cardList: state.cardList.concat(<Card 
+                f={this.removeCard} 
+                id={state.cardList.length} 
+                key={this.state.cardNumber}/>),
             cardNumber: Date.now()
             })
+        )
+    }
 
+    removeCard(cardIndex) {
+        const pop = this.state.cardList.concat();
+        pop.splice(cardIndex, 1, '');
+        this.setState( (state) => {
+            
+            return {cardList: pop}
+        }
         )
     }
 
     render() {
         return (
-            <div className="col border" key={this.props.id}>
+            <div className="col border">
                 Название колонки
                 <button className="btn btn-primary" type="submit" onClick={this.addCard}>
                     +task
                 </button>
-
                 {this.state.cardList}
             </div>
                 

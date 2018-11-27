@@ -10,26 +10,21 @@ class Card extends Component {
         cardComments: 0
       }
       
-      this.removeCard = this.removeCard.bind(this);
-    }
-
-    removeCard() {
-
-
-    } 
+    }   
 
     render() {
       return (
-        <div className="card w-90 mt-2" key={this.props.cardNumber}>
+        <div className="card w-90 mt-2">
           <div className="card-header">
-            <button type="button" className="close btn btn-primary" aria-label="Close" onClick={this.removeCard}>
+            <button type="button" className="close btn btn-primary" aria-label="Close" 
+              onClick={() => { this.props.f(this.props.id)}}>
               <span aria-hidden="true">&times;</span>
             </button>
             {this.state.cardName}
           </div>
           <div className="card-body">
             <p className="card-text">{this.state.cardText}</p>
-            <button className="btn btn-primary">Редактировать</button>
+            <button className="btn btn-primary">{this.props.id}</button>
             <div>
               <span className="badge badge-danger">Комментарии: {this.state.cardComments}</span>
             </div>

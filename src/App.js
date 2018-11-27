@@ -11,18 +11,26 @@ class App extends Component {
     this.state = {
       columnList: [1,2,3,4]
     }
+    this.addColumn = this.addColumn.bind(this);
   }
- 
 
+  addColumn() {
+    let list = this.state.columnList.concat();
+    list.push(this.state.columnList.length + 1);
+    this.setState( (state) => ({
+      columnList: list
+    }) ) ;
+  }
+  
   render() {
     return  (
       <div className="container">
         <div className="row">
-          <button className="btn btn-primary btn-sm" type="submit">
+          <button className="btn btn-primary btn-sm" type="submit" onClick={this.addColumn}>
             +column
           </button>
-          {this.state.columnList.map(item => (<Column id={item} />))}
-          {/* <Column columnAmount={this.state.columnList}/> */}
+          {this.state.columnList.map(item => (<Column key={item} />))}
+          
         </div>
       </div>
     )
