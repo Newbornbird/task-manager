@@ -1,32 +1,56 @@
 import React, { Component } from 'react';
+import Modal from './Modal';
 // import But from './But';
 
 class Card extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        cardName: 'Введите имя',
+        cardName: 'Новая карточка',
         cardText: 'Введите Описание',
-        cardComments: 0
+        cardComments: [],
+       
       }
       
-    }   
+    }
+    
+    handleChange = (event) => {
+
+      if(event.target.name === 'cardName') {
+        this.setState({
+          cardName: event.target.value,
+        })
+      } else if(event.target.name === 'cardText') {
+          this.setState({
+            cardText: event.target.value
+          })
+        }
+         
+    }
 
     render() {
       return (
         <div className="card w-90 mt-2">
           <div className="card-header">
             <button type="button" className="close btn btn-primary" aria-label="Close" 
-              onClick={() => { this.props.f(this.props.id)}}>
+              onClick={() => { this.props.removeCard(this.props.id)}}>
               <span aria-hidden="true">&times;</span>
             </button>
             {this.state.cardName}
           </div>
           <div className="card-body">
             <p className="card-text">{this.state.cardText}</p>
-            <button className="btn btn-primary">{this.props.id}</button>
+            <Modal 
+              cardName = {this.state.cardName} 
+              cardText = {this.state.cardText} 
+              cardComments = {this.state.cardComments}
+              handleChange = {this.handleChange}
+              cardId = {this.props.cardId}
+              columnId = {this.props.columnId}
+            />
+            {/* <button className="btn btn-primary">{this.props.id}</button> */}
             <div>
-              <span className="badge badge-danger">Комментарии: {this.state.cardComments}</span>
+              <span className="badge badge-danger">Комментарии: {this.state.cardComments.length}</span>
             </div>
           </div>
         </div>
