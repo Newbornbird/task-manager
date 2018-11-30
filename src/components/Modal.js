@@ -5,7 +5,8 @@ class Modal extends Component {
     super(props)
     this.state = {
       columnId: this.props.columnId,
-      cardId: this.props.cardId
+      cardId: this.props.cardId,
+      
     }
   }
   

@@ -33,7 +33,7 @@ class Card extends Component {
         <div className="card w-90 mt-2">
           <div className="card-header">
             <button type="button" className="close btn btn-primary" aria-label="Close" 
-              onClick={() => { this.props.removeCard(this.props.id)}}>
+              onClick={() => { this.props.removeCard(this.props.cardNumber)}}>
               <span aria-hidden="true">&times;</span>
             </button>
             {this.state.cardName}
@@ -45,7 +45,7 @@ class Card extends Component {
               cardText = {this.state.cardText} 
               cardComments = {this.state.cardComments}
               handleChange = {this.handleChange}
-              cardId = {this.props.cardId}
+              cardId = {this.props.cardNumber}
               columnId = {this.props.columnId}
             />
             {/* <button className="btn btn-primary">{this.props.id}</button> */}
