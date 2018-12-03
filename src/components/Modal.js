@@ -5,7 +5,7 @@ class Modal extends Component {
     super(props)
     this.state = {
       columnId: this.props.columnId,
-      cardId: this.props.cardId,
+      cardNumber: this.props.cardNumber,
       
     }
   }
@@ -17,11 +17,11 @@ class Modal extends Component {
             type="button" 
             className="btn btn-primary" 
             data-toggle="modal" 
-            data-target={"#exampleModal" + this.state.columnId + this.state.cardId}>
+            data-target={"#exampleModal" + this.state.cardNumber}>
             Редактировать
           </button>
        
-          <div className="modal fade" id={"exampleModal"+ this.state.columnId + this.state.cardId} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal fade" id={"exampleModal"+ this.state.cardNumber} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -33,28 +33,28 @@ class Modal extends Component {
                 <div className="modal-body">
                 <form onSubmit={this.props.handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Наименование</label>
+                    <label htmlFor="exampleInput">Наименование</label>
                     <input
                       name="cardName" 
                       type="text" 
                       className="form-control" 
-                      id="exampleInputEmail1" 
+                      id="exampleInput" 
                       aria-describedby="emailHelp" 
                       placeholder="Введите имя" 
-                      // value={this.state.cardName}
+                      value={this.props.cardName}
                       onChange={this.props.handleChange}
                     />
                     
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleFormControlTextarea1">Описание</label>
+                    <label htmlFor="cardTextArea">Описание</label>
                     <textarea
                       name="cardText" 
                       onChange={this.props.handleChange}
                       className="form-control" 
-                      id="exampleFormControlTextarea1" 
+                      id="cardTextArea" 
                       rows="3">
-                      </textarea>
+                    </textarea>
                       
                   </div>
                   {/* <div className="form-group form-check">
@@ -71,7 +71,7 @@ class Modal extends Component {
               </div>
             </div>
           </div>
-          </div>
+        </div>
       )
     }
 }

@@ -9,16 +9,20 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      columnList: [1,2,3,4]
+      columnList: [ 0, 1, 2, 3 ],
+      columnNames: [ 'TODO', 'In progress', 'Testing', 'DONE']
     }
     
   }
 
   addColumn = () => {
-    let list = this.state.columnList.concat();
-    list.push(this.state.columnList.length + 1);
+    let columnList = this.state.columnList.concat();
+    let columnNames = this.state.columnNames.concat();
+    columnList.push(this.state.columnList.length);
+    columnNames.push(' ');
     this.setState( (state) => ({
-      columnList: list
+      columnList,
+      columnNames
     }) ) ;
 
     
@@ -67,27 +71,25 @@ class App extends Component {
   clear = () => {
     localStorage.clear();
   }
-
-
   
   render() {
     return  (
       <div>
-        
         <div className="container">
           <div className="row">
             
             {this.state.columnList.map(item => (
               <Column 
-                key={item} 
-                columnId={item}
+                key={item}
+                columnId = {item} 
+                columnName={this.state.columnNames[item]}
               />))
             }
             <button className="btn btn-primary btn-sm" type="submit" onClick={this.addColumn}>
               +column
             </button>
             <button className="btn btn-primary btn-sm" type="submit" onClick={this.clear}>
-            clear
+              clear
             </button>
             
             

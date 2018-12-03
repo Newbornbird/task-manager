@@ -5,64 +5,61 @@ class Column extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            columnName: '',
-            cardNumber: [],
-            cardId: []
-                   
+            columnName: this.props.columnName,
+            cards: [],
+            
         }
-                       
     }
 
     addCard = () => {
-        const cardNumber = this.state.cardNumber.concat();
-        cardNumber.push(Date.now());
+        const cards = this.state.cards.concat();
+        cards.push(Date.now());
         this.setState( (state) => {
-            return {cardNumber: cardNumber}
+            return {cards}
             }
-        )
-
-        
+        ) 
     }
 
     removeCard = (cardIndex) => {
-        const pop = this.state.cardNumber.concat();
-        pop.splice(pop.indexOf(cardIndex), 1);
-        console.log(pop);
+        const cards = this.state.cards.concat();
+        cards.splice(cards.indexOf(cardIndex), 1);
+       
         this.setState( (state) => {
-            
-            return {cardNumber: pop}
+            return {cards}
         })
 
                
     }
 
     saveStateToLocalStorage = () => {
-        
-        for (let key in this.state) {
-          // сохранить в local storage
-          localStorage.setItem(key, JSON.stringify(this.state[key]));
-        }
-      }
+        localStorage.setItem('column' + this.props.columnId, JSON.stringify(this.state));
+    }
     
-      hydrateStateWithLocalStorage = () => {
-        
-        for (let key in this.state) {
-          // проверка нахождения state в local storage
-          if (localStorage.hasOwnProperty(key)) {
+    hydrateStateWithLocalStorage = () => {
+        if (localStorage.hasOwnProperty('column' + this.props.columnId)) {
             // get the key's value from localStorage
-            let value = localStorage.getItem(key);
-    
+            let value = localStorage.getItem('column' + this.props.columnId);
             // parse the localStorage string and setState
             try {
               value = JSON.parse(value);
-              this.setState({ [key]: value });
+              this.setState( state => {
+                  return { 
+                    columnName: value.columnName,
+                    cards: value.cards,
+                   }
+              } );
             } catch (e) {
               // handle empty string
-              this.setState({ [key]: value });
+              this.setState( state => {
+                return { 
+                  columnName: value.columnName,
+                  cards: value.cards,
+                 }
+            } );
             }
-          }
+          
         }
-      }
+    }
 
     componentDidMount() {
         this.hydrateStateWithLocalStorage();
@@ -81,19 +78,18 @@ class Column extends Component {
     render() {
         return (
             <div className="col border">
-                Название колонки
+                {this.state.columnName}
                 
                 <button className="btn btn-primary" type="submit" onClick={this.addCard}>
                     +task
                 </button>
-                {this.state.cardNumber.map( item => (
+                {this.state.cards.map( item => (
                     <Card 
-                        columnId={this.props.columnId}
+                        // columnId={this.props.columnId}
                         removeCard={this.removeCard} 
                         cardNumber={item} 
                         key={item}
-                    />))
-                }
+                    />))}
             </div>
                 
         )
