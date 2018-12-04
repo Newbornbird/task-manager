@@ -31,6 +31,11 @@ class Column extends Component {
                
     }
 
+    handleChange = (event) => {
+        this.setState( { columnName: event.target.value } );
+            
+    }
+
     saveStateToLocalStorage = () => {
         localStorage.setItem('column' + this.props.columnId, JSON.stringify(this.state));
     }
@@ -78,11 +83,16 @@ class Column extends Component {
     render() {
         return (
             <div className="col border">
-                {this.state.columnName}
-                
-                <button className="btn btn-primary" type="submit" onClick={this.addCard}>
-                    +task
-                </button>
+                <input 
+                    type="email" 
+                    name="columnName"
+                    className="form-control border-0" 
+                    id="inputCardName" 
+                    aria-describedby=""
+                    value={this.state.columnName}
+                    onChange={this.handleChange}>
+            </input>
+                {/* {this.state.columnName} */}
                 {this.state.cards.map( item => (
                     <Card 
                         // columnId={this.props.columnId}
@@ -90,6 +100,9 @@ class Column extends Component {
                         cardNumber={item} 
                         key={item}
                     />))}
+                <button className="btn btn-primary" type="submit" onClick={this.addCard}>
+                    +task
+                </button>
             </div>
                 
         )

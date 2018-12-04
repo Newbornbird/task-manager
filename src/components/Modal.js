@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Comment from './Comment';
 
 class Modal extends Component {
   constructor(props) {
@@ -6,16 +7,16 @@ class Modal extends Component {
     this.state = {
       columnId: this.props.columnId,
       cardNumber: this.props.cardNumber,
-      
+      cardComments: this.props.cardComments
     }
   }
-  
+
   render() {
        return (
         <div>
           <button 
             type="button" 
-            className="btn btn-primary" 
+            className="btn btn-primary btn-sm" 
             data-toggle="modal" 
             data-target={"#exampleModal" + this.state.cardNumber}>
             Редактировать
@@ -28,16 +29,17 @@ class Modal extends Component {
                   <h5 className="modal-title" id="exampleModalLabel">Редактор карточки</h5>
                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
+                    
                   </button>
                 </div>
                 <div className="modal-body">
-                <form onSubmit={this.props.handleSubmit}>
+                  <form onSubmit={this.props.handleSubmit} className="cardNameText" key='11'>
                   <div className="form-group">
-                    <label htmlFor="exampleInput">Наименование</label>
+                    {/* <label htmlFor="exampleInput">Наименование</label> */}
                     <input
                       name="cardName" 
                       type="text" 
-                      className="form-control" 
+                      className="form-control border-0" 
                       id="exampleInput" 
                       aria-describedby="emailHelp" 
                       placeholder="Введите имя" 
@@ -51,9 +53,10 @@ class Modal extends Component {
                     <textarea
                       name="cardText" 
                       onChange={this.props.handleChange}
-                      className="form-control" 
+                      className="form-control border-0" 
                       id="cardTextArea" 
-                      rows="3">
+                      rows="3"
+                      value={this.props.cardText}>
                     </textarea>
                       
                   </div>
@@ -63,8 +66,31 @@ class Modal extends Component {
                   </div> */}
                   {/* <button type="submit" className="btn btn-primary">Сохранить</button> */}
                 </form>
+                <form className="cardComments" onSubmit={this.props.addComment} key='22'>
+                    <label htmlFor="cardComment">Добавление комментария</label>
+                    <textarea
+                      name="cardComment" 
+                      className="form-control" 
+                      id="cardComment" 
+                      rows="3"
+                    >
+                    </textarea>
+                    <button type="submit" className="btn btn-primary btn-sm mt-2">Сохранить комментарий</button>
+                </form>
+                <div className="comments" key='1'>
+                                 
+                  {this.props.cardComments.map(item => (
+                    <Comment
+                      author="Автор"
+                      commentText={item}
+                      key={item}
+                      removeComment={this.props.removeComment}
+
+                    />
+                  ))}
                 </div>
-                <div className="modal-footer">
+                </div>
+                <div className="modal-footer" key='2'>
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                   {/* <button type="button" className="btn btn-primary">Save changes</button> */}
                 </div>
