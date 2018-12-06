@@ -5,7 +5,10 @@ class Comment extends Component {
     super(props)
     this.state = {
       Author: this.props.Author,
-      commentText: this.props.commentText,
+      comment: {
+        commentText: this.props.comment.commentText,
+        inputForUpdatingComment: this.props.comment.inputForUpdatingComment
+      }
       
     }
   }
@@ -14,12 +17,48 @@ class Comment extends Component {
        return (
         <div className="comment border mt-2 mb-2">
           <h5 className="commentAuthor">Автор комментария</h5>
-          <textarea className="d-none border-0" name="" id="" cols="62" rows="3"></textarea>
-          <p className="d-block commentText">{this.props.commentText}</p>
-          
-          <button type="button" className="btn btn-secondary btn-sm" onClick={()=> {this.props.removeComment(this.state.commentText)} }>Удалить</button>
+          <textarea
+            autoFocus={true} 
+            className={this.props.comment.inputForUpdatingComment ? "d-block" : "d-none"} 
+            name="inputForUpdatingComment" 
+            value={this.props.comment.commentText} 
+            id="" cols="62" 
+            rows="2"
+            onChange = { (event) => {this.props.updateComment(event, this.props.comment)} }
+            >
+          </textarea>
+          <p 
+            className = {this.props.comment.inputForUpdatingComment ? "d-none commentText" : "d-block commentText"}
+            >
+            {this.props.comment.commentText}
+          </p>
+
+          <div className="btn-group" role="group" aria-label="Basic example">
+            <button 
+              type="button" 
+              className="btn btn-secondary btn-sm" 
+              onClick={()=> {this.props.removeComment(this.props.comment)} }>
+              Удалить
+            </button>
+            <button 
+              type="button" 
+              className="btn btn-secondary btn-sm" 
+              onClick = { () => {this.props.activateInputForUpdateComments(this.props.comment)} }
+              >
+              
+              Изменить
+            </button>
+            <button 
+              type="button" 
+              className={this.props.comment.inputForUpdatingComment ? "d-block btn btn-secondary btn-sm" : "d-none btn btn-secondary btn-sm"} 
+              onClick = { () => {this.props.saveUpdatingComment(this.props.comment)} }
+              >
+              
+              Сохранить
+            </button>
             
-          
+          </div>
+                   
           
         </div>
                 

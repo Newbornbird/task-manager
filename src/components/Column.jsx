@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from './Card';
+import Card from './Card.jsx';
 
 class Column extends Component {
     constructor(props) {
@@ -99,6 +99,8 @@ class Column extends Component {
                         removeCard={this.removeCard} 
                         cardNumber={item} 
                         key={item}
+                        columnName = {this.props.columnName}
+                        author = {this.props.author}
                     />))}
                 <button className="btn btn-primary" type="submit" onClick={this.addCard}>
                     +task

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Comment from './Comment';
+import Comment from './Comment.jsx';
 
 class Modal extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Modal extends Component {
             Редактировать
           </button>
        
-          <div className="modal fade" id={"exampleModal"+ this.state.cardNumber} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal fade" id={"exampleModal"+ this.state.cardNumber} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -34,7 +34,10 @@ class Modal extends Component {
                 </div>
                 <div className="modal-body">
                   <form onSubmit={this.props.handleSubmit} className="cardNameText" key='11'>
+                  
                   <div className="form-group">
+                    <small>Автор карточки: {this.props.author}</small>
+                    <div><small>В колонке: {this.props.columnName}</small></div>
                     {/* <label htmlFor="exampleInput">Наименование</label> */}
                     <input
                       name="cardName" 
@@ -46,6 +49,7 @@ class Modal extends Component {
                       value={this.props.cardName}
                       onChange={this.props.handleChange}
                     />
+                    
                     
                   </div>
                   <div className="form-group">
@@ -81,10 +85,14 @@ class Modal extends Component {
                                  
                   {this.props.cardComments.map(item => (
                     <Comment
-                      author="Автор"
-                      commentText={item}
-                      key={item}
-                      removeComment={this.props.removeComment}
+                      author = {this.props.author}
+                      comment = {item}
+                      key = {item.commentText}
+                      removeComment = {this.props.removeComment}
+                      updateComment = {this.props.updateComment}
+                      activateInputForUpdateComments = {this.props.activateInputForUpdateComments}
+                      saveUpdatingComment = {this.props.saveUpdatingComment}
+                      
 
                     />
                   ))}

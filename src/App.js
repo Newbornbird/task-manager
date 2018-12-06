@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import ModalWelcome from './components/ModalWelcome';
+import ModalWelcome from './components/ModalWelcome.jsx';
 // import Card from './components/Card';
 // import But from './components/But';
-import Column from './components/Column';
+import Column from './components/Column.jsx';
 import './App.css';
 
 class App extends Component {
@@ -10,9 +10,24 @@ class App extends Component {
     super(props)
     this.state = {
       columnList: [ 0, 1, 2, 3 ],
-      columnNames: [ 'TODO', 'In progress', 'Testing', 'DONE']
+      columnNames: [ 'TODO', 'In progress', 'Testing', 'DONE'],
+      author: '',
+      modalWelcomeIsActive: true
     }
     
+  }
+
+  enterAuthorName = (event) => {
+    this.setState({ author: event.target.value });
+  }
+
+  unActivateModalWelcome = () => {
+    if(!this.state.author) {
+      return;
+    }
+    this.setState( { modalWelcomeIsActive: false } );
+   
+
   }
 
   addColumn = () => {
@@ -24,7 +39,6 @@ class App extends Component {
       columnList,
       columnNames
     }) ) ;
-
     
   }
 
@@ -75,6 +89,11 @@ class App extends Component {
   render() {
     return  (
       <div>
+        <ModalWelcome 
+          modalWelcomeIsActive={this.state.modalWelcomeIsActive}
+          enterAuthorName={this.enterAuthorName}
+          unActivateModalWelcome={this.unActivateModalWelcome}
+        />
         <div className="container">
           <div className="row">
             {this.state.columnList.map(item => (
@@ -82,6 +101,7 @@ class App extends Component {
                 key={item}
                 columnId = {item} 
                 columnName={this.state.columnNames[item]}
+                author={this.state.author}
               />))
             }
             <button className="btn btn-primary btn-sm" type="submit" onClick={this.addColumn}>
