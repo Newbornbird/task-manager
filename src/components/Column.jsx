@@ -68,10 +68,7 @@ class Column extends Component {
 
     componentDidMount() {
         this.hydrateStateWithLocalStorage();
-        // window.addEventListener(
-        //   "beforeunload",
-        //   this.saveStateToLocalStorage()
-        // );
+        
       }
     
       componentDidUpdate() {
@@ -91,11 +88,10 @@ class Column extends Component {
                     aria-describedby=""
                     value={this.state.columnName}
                     onChange={this.handleChange}>
-            </input>
-                {/* {this.state.columnName} */}
+                </input>
+               
                 {this.state.cards.map( item => (
                     <Card 
-                        // columnId={this.props.columnId}
                         removeCard={this.removeCard} 
                         cardNumber={item} 
                         key={item}

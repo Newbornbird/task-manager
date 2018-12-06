@@ -4,7 +4,7 @@ class Comment extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      Author: this.props.Author,
+      author: this.props.author,
       comment: {
         commentText: this.props.comment.commentText,
         inputForUpdatingComment: this.props.comment.inputForUpdatingComment
@@ -16,7 +16,7 @@ class Comment extends Component {
   render() {
        return (
         <div className="comment border mt-2 mb-2">
-          <h5 className="commentAuthor">Автор комментария</h5>
+          <h5 className="commentAuthor">{this.props.author}</h5>
           <textarea
             autoFocus={true} 
             className={this.props.comment.inputForUpdatingComment ? "d-block" : "d-none"} 
@@ -45,7 +45,6 @@ class Comment extends Component {
               className="btn btn-secondary btn-sm" 
               onClick = { () => {this.props.activateInputForUpdateComments(this.props.comment)} }
               >
-              
               Изменить
             </button>
             <button 
@@ -53,7 +52,6 @@ class Comment extends Component {
               className={this.props.comment.inputForUpdatingComment ? "d-block btn btn-secondary btn-sm" : "d-none btn btn-secondary btn-sm"} 
               onClick = { () => {this.props.saveUpdatingComment(this.props.comment)} }
               >
-              
               Сохранить
             </button>
             

@@ -38,7 +38,7 @@ class Modal extends Component {
                   <div className="form-group">
                     <small>Автор карточки: {this.props.author}</small>
                     <div><small>В колонке: {this.props.columnName}</small></div>
-                    {/* <label htmlFor="exampleInput">Наименование</label> */}
+                   
                     <input
                       name="cardName" 
                       type="text" 
@@ -64,11 +64,7 @@ class Modal extends Component {
                     </textarea>
                       
                   </div>
-                  {/* <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div> */}
-                  {/* <button type="submit" className="btn btn-primary">Сохранить</button> */}
+                 
                 </form>
                 <form className="cardComments" onSubmit={this.props.addComment} key='22'>
                     <label htmlFor="cardComment">Добавление комментария</label>
@@ -100,7 +96,7 @@ class Modal extends Component {
                 </div>
                 <div className="modal-footer" key='2'>
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                  {/* <button type="button" className="btn btn-primary">Save changes</button> */}
+                 
                 </div>
               </div>
             </div>

@@ -117,7 +117,7 @@ componentDidUpdate() {
 render() {
   return (
     <div className="card w-90 mt-2 mb-2">
-        {/* <div className="card-header"> */}
+        
           <button type="button" className="close btn btn-primary" aria-label="Close" 
             onClick={() => { this.props.removeCard(this.props.cardNumber)}}>
             <span aria-hidden="true">&times;</span>
@@ -131,10 +131,9 @@ render() {
             value={this.state.cardName}
             onChange={this.handleChange}>
           </input>
-          {/* {this.state.cardName} */}
-        {/* </div> */}
+                 
         <div className="card-body">
-          {/* <p className="card-text">{this.state.cardText}</p> */}
+          
           <Modal 
             columnName = {this.props.columnName}
             cardName = {this.state.cardName} 
@@ -150,7 +149,7 @@ render() {
             author = {this.props.author}
             
           />
-          {/* <button className="btn btn-primary">{this.props.id}</button> */}
+          
           <div>
             <span className="badge badge-danger">Комментарии: {this.state.cardComments.length}</span>
           </div>

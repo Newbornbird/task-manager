@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import ModalWelcome from './components/ModalWelcome.jsx';
-// import Card from './components/Card';
-// import But from './components/But';
 import Column from './components/Column.jsx';
 import './App.css';
 
@@ -72,10 +70,7 @@ class App extends Component {
 
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
-    // window.addEventListener(
-    //   "beforeunload",
-    //   this.saveStateToLocalStorage()
-    // );
+    
   }
 
   componentDidUpdate() {
