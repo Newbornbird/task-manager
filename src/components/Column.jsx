@@ -1,79 +1,81 @@
 import React, { Component } from 'react';
-import Card from './Card.jsx';
+
+// import { connect } from 'react-redux';
+// import Card from './Card.jsx';
 
 class Column extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            columnName: this.props.columnName,
-            cards: [],
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         columnName: this.props.columnName,
+    //         cards: [],
             
-        }
-    }
+    //     }
+    // }
 
-    addCard = () => {
-        const cards = this.state.cards.concat();
-        cards.push(Date.now());
-        this.setState( (state) => {
-            return {cards}
-            }
-        ) 
-    }
+//     addCard = () => {
+//         const cards = this.state.cards.concat();
+//         cards.push(Date.now());
+//         this.setState( (state) => {
+//             return {cards}
+//             }
+//         ) 
+//     }
 
-    removeCard = (cardIndex) => {
-        const cards = this.state.cards.concat();
-        cards.splice(cards.indexOf(cardIndex), 1);
+//     removeCard = (cardIndex) => {
+//         const cards = this.state.cards.concat();
+//         cards.splice(cards.indexOf(cardIndex), 1);
        
-        this.setState( (state) => {
-            return {cards}
-        })
+//         this.setState( (state) => {
+//             return {cards}
+//         })
 
                
-    }
+//     }
 
-    handleChange = (event) => {
-        this.setState( { columnName: event.target.value } );
+//     handleChange = (event) => {
+//         this.setState( { columnName: event.target.value } );
             
-    }
+//     }
 
-    saveStateToLocalStorage = () => {
-        localStorage.setItem('column' + this.props.columnId, JSON.stringify(this.state));
-    }
+//     saveStateToLocalStorage = () => {
+//         localStorage.setItem('column' + this.props.columnId, JSON.stringify(this.state));
+//     }
     
-    hydrateStateWithLocalStorage = () => {
-        if (localStorage.hasOwnProperty('column' + this.props.columnId)) {
-            // get the key's value from localStorage
-            let value = localStorage.getItem('column' + this.props.columnId);
-            // parse the localStorage string and setState
-            try {
-              value = JSON.parse(value);
-              this.setState( state => {
-                  return { 
-                    columnName: value.columnName,
-                    cards: value.cards,
-                   }
-              } );
-            } catch (e) {
-              // handle empty string
-              this.setState( state => {
-                return { 
-                  columnName: value.columnName,
-                  cards: value.cards,
-                 }
-            } );
-            }
+//     hydrateStateWithLocalStorage = () => {
+//         if (localStorage.hasOwnProperty('column' + this.props.columnId)) {
+//             // get the key's value from localStorage
+//             let value = localStorage.getItem('column' + this.props.columnId);
+//             // parse the localStorage string and setState
+//             try {
+//               value = JSON.parse(value);
+//               this.setState( state => {
+//                   return { 
+//                     columnName: value.columnName,
+//                     cards: value.cards,
+//                    }
+//               } );
+//             } catch (e) {
+//               // handle empty string
+//               this.setState( state => {
+//                 return { 
+//                   columnName: value.columnName,
+//                   cards: value.cards,
+//                  }
+//             } );
+//             }
           
-        }
-    }
+//         }
+//     }
 
-    componentDidMount() {
-        this.hydrateStateWithLocalStorage();
+//     componentDidMount() {
+//         this.hydrateStateWithLocalStorage();
         
-      }
+//       }
     
-      componentDidUpdate() {
-        this.saveStateToLocalStorage();
-      }
+//       componentDidUpdate() {
+//         this.saveStateToLocalStorage();
+//       }
     
 
     
@@ -86,18 +88,21 @@ class Column extends Component {
                     className="form-control border-0" 
                     id="inputCardName" 
                     aria-describedby=""
-                    value={this.state.columnName}
-                    onChange={this.handleChange}>
+                    value={this.props.columnName}
+                    onChange={(event)=> { 
+                        this.props.CHANGE_COLUMNNAME(event.target.value, this.props.columnId) 
+                    }}
+                >
                 </input>
                
-                {this.state.cards.map( item => (
+                {/* {this.state.cards.map( item => (
                     <Card 
                         removeCard={this.removeCard} 
                         cardNumber={item} 
                         key={item}
                         columnName = {this.props.columnName}
                         author = {this.props.author}
-                    />))}
+                    />))} */}
                 <button className="btn btn-primary" type="submit" onClick={this.addCard}>
                     +task
                 </button>
@@ -105,12 +110,9 @@ class Column extends Component {
                 
         )
     }
-        
-
-
-       
+          
     
 }
-                           
+                          
 
 export default Column;
