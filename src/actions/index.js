@@ -8,23 +8,32 @@ export function ADD_COLUMN (columnName) {
 export function CHANGE_COLUMNNAME(columnName, columnId) {
   return {
     type: 'CHANGE_COLUMNNAME',
-    payload: columnName,
+    columnName,
     columnId
   }
 
 }
 
-export function ADD_CARD(cardName) {
+export function ADD_CARD(columnId) {
  return {
    type: 'ADD_CARD',
-   payload: cardName
+   columnId,
+   
  } 
 }
 
-export function DELETE_CARD(id) {
+export function DELETE_CARD(columnId, cardId) {
   return {
     type: 'DELETE_CARD',
-    payload: id
+    columnId,
+    cardId
+  }
+}
+
+export function ADD_COLUMN_INFORMATION(cardId) {
+  return {
+    type: 'ADD_COLUMN_INFORMATION',
+    cardId
   }
 }
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 // import { connect } from 'react-redux';
-// import Card from './Card.jsx';
+import Card from './Card.jsx';
 
 class Column extends Component {
     // constructor(props) {
@@ -95,15 +94,20 @@ class Column extends Component {
                 >
                 </input>
                
-                {/* {this.state.cards.map( item => (
+                {this.props.cards.map( item => (
                     <Card 
-                        removeCard={this.removeCard} 
-                        cardNumber={item} 
-                        key={item}
+                        // removeCard={this.removeCard} 
+                        cardId = {item} 
+                        key = {item}
                         columnName = {this.props.columnName}
-                        author = {this.props.author}
-                    />))} */}
-                <button className="btn btn-primary" type="submit" onClick={this.addCard}>
+                        columnId = {this.props.columnId}
+                        DELETE_CARD = {this.props.DELETE_CARD}
+                        // author = {this.props.author}
+                    />))}
+                <button 
+                    className="btn btn-primary" 
+                    type="submit" 
+                    onClick={() => {this.props.ADD_CARD(this.props.columnId)}}>
                     +task
                 </button>
             </div>

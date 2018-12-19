@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Column from './components/Column.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { CHANGE_COLUMNNAME, ADD_COLUMN } from './actions';
+import { CHANGE_COLUMNNAME, ADD_COLUMN, ADD_CARD, DELETE_CARD } from './actions';
 import './App.css';
 
 class App extends Component {
@@ -99,7 +99,10 @@ class App extends Component {
                 key={item.columnId}
                 columnId = {item.columnId} 
                 columnName = {item.columnName}
+                cards = {item.cards}
                 CHANGE_COLUMNNAME = {this.props.CHANGE_COLUMNNAME}
+                ADD_CARD = {this.props.ADD_CARD}
+                DELETE_CARD = {this.props.DELETE_CARD}
                 // author={this.state.author}
               />))
             }
@@ -128,7 +131,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     ADD_COLUMN: bindActionCreators(ADD_COLUMN, dispatch),
-    CHANGE_COLUMNNAME: bindActionCreators(CHANGE_COLUMNNAME, dispatch)
+    CHANGE_COLUMNNAME: bindActionCreators(CHANGE_COLUMNNAME, dispatch),
+    ADD_CARD: bindActionCreators(ADD_CARD, dispatch),
+    DELETE_CARD: bindActionCreators(DELETE_CARD, dispatch)
   }
 }
 
