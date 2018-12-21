@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import Card from './Card.jsx';
+import uuid from 'uuid';
 
 class Column extends Component {
     // constructor(props) {
@@ -107,7 +108,7 @@ class Column extends Component {
                 <button 
                     className="btn btn-primary" 
                     type="submit" 
-                    onClick={() => {this.props.ADD_CARD(this.props.columnId)}}>
+                    onClick={() => {this.props.ADD_CARD(this.props.columnId, uuid())}}>
                     +task
                 </button>
             </div>

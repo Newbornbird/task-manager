@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import uuid from 'uuid';
+
+
 
 const initialState = {
   columns: [
@@ -9,9 +10,7 @@ const initialState = {
     { columnId: 3, columnName: "Done", cards: [] },
    
   ],
-  cards: [
-
-  ]
+  cards: {}
 }
 
 function columnOperations(state = initialState.columns, action) {
@@ -26,11 +25,11 @@ function columnOperations(state = initialState.columns, action) {
       copyOfState[action.columnId].columnName = action.columnName
       return copyOfState;
 
-    case 'ADD_CARD':
-      copyOfState[action.columnId].cards.push(uuid())
+    case 'ADD_CARD_TO_ARRAY':
+      copyOfState[action.columnId].cards.push(action.cardId)
       return copyOfState
 
-    case 'DELETE_CARD':
+    case 'DELETE_CARD_FROM_ARRAY':
       let cards = copyOfState[action.columnId].cards;
       cards.splice(cards.indexOf(action.cardId), 1);
       return copyOfState
@@ -41,12 +40,29 @@ function columnOperations(state = initialState.columns, action) {
 }
 
 function cardOperations (state = initialState.cards, action) {
+  let copyOfState = Object.assign( {}, { ...state } );
   switch(action.type) {
     case 'ADD_CARD_INFORMATION':
-      return state;
+      copyOfState[action.cardId] = { 
+        columnId: action.columnId, 
+        cardName: 'Введите название',
+        cardDescription: 'Введите описание',
+        comments: []
+      }
+      return copyOfState;
+    
+    case 'DELETE_CARD_INFORMATION':
+      delete copyOfState[action.cardId];
+      return copyOfState
+
+    case 'CHANGE_CARDNAME':
+      console.log(copyOfState[action.cardId].cardName);
+      copyOfState[action.cardId].cardName = action.cardName;
+      console.log(copyOfState[action.cardId].cardName);
+      return copyOfState
     
       default:
-        return state;
+        return copyOfState;
   }
   
 }

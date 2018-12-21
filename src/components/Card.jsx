@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { ADD_COLUMN_INFORMATION } from '../actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { CHANGE_CARDNAME, CHANGE_CARD_DESCRIPTION } from '../actions';
 // import Modal from './Modal.jsx';
 
 
@@ -135,8 +135,10 @@ render() {
             className="form-control border-0" 
             id="inputCardName" 
             aria-describedby=""
-            // value='Название карточки'
-            // onChange={this.handleChange}
+            value = {this.props.cardInformation.cardName}
+            onChange = {(event) => {
+              this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value)}
+            }
           >
           </input>
                  
@@ -168,17 +170,19 @@ render() {
 
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     cardInformation: state.cards
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     ADD_COLUMN_INFORMATION: bindActionCreators(ADD_COLUMN_INFORMATION, dispatch)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    cardInformation: state.cards[ownProps.cardId]
     
-//   }
-// }
+  }
+}
 
-export default Card;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    CHANGE_CARDNAME: bindActionCreators(CHANGE_CARDNAME, dispatch),
+    CHANGE_CARD_DESCRIPTION: bindActionCreators(CHANGE_CARDNAME, dispatch)
+  }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
