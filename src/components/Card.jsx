@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { CHANGE_CARDNAME, CHANGE_CARD_DESCRIPTION } from '../actions';
-// import Modal from './Modal.jsx';
+import { CHANGE_CARDNAME, CHANGE_CARD_DESCRIPTION, ADD_COMMENT } from '../actions';
+import Modal from './Modal.jsx';
 
 
 class Card extends Component {
@@ -144,21 +144,25 @@ render() {
                  
         <div className="card-body">
           
-          {/* <Modal 
-            columnName = {this.props.columnName}
-            cardName = {this.state.cardName} 
-            cardText = {this.state.cardText} 
-            cardComments = {this.state.cardComments}
-            handleChange = {this.handleChange}
-            removeComment = {this.removeComment}
-            cardNumber = {this.props.cardNumber}
-            addComment = {this.addComment}
-            updateComment = {this.updateComment}
-            activateInputForUpdateComments = {this.activateInputForUpdateComments}
-            saveUpdatingComment = {this.saveUpdatingComment}
-            author = {this.props.author}
+          <Modal 
+            columnName = {this.props.cardInformation.columnName}
+            cardName = {this.props.cardInformation.cardName} 
+            cardDescription = {this.props.cardInformation.cardDescription} 
+            comments = {this.props.cardInformation.comments}
+            CHANGE_CARDNAME = {this.props.CHANGE_CARDNAME}
+            CHANGE_CARD_DESCRIPTION = {this.props.CHANGE_CARD_DESCRIPTION}
+            cardId = {this.props.cardId}
+            ADD_COMMENT = {this.props.ADD_COMMENT}
+            // handleChange = {this.handleChange}
+            // removeComment = {this.removeComment}
+            // cardNumber = {this.props.cardNumber}
+            // addComment = {this.addComment}
+            // updateComment = {this.updateComment}
+            // activateInputForUpdateComments = {this.activateInputForUpdateComments}
+            // saveUpdatingComment = {this.saveUpdatingComment}
+            // author = {this.props.author}
             
-          /> */}
+          />
           
           <div>
             {/* <span className="badge badge-danger">Комментарии: {this.state.cardComments.length}</span> */}
@@ -180,7 +184,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     CHANGE_CARDNAME: bindActionCreators(CHANGE_CARDNAME, dispatch),
-    CHANGE_CARD_DESCRIPTION: bindActionCreators(CHANGE_CARDNAME, dispatch)
+    CHANGE_CARD_DESCRIPTION: bindActionCreators(CHANGE_CARD_DESCRIPTION, dispatch),
+    ADD_COMMENT: bindActionCreators(ADD_COMMENT, dispatch)
+    
   }
 
 }

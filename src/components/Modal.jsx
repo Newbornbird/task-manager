@@ -1,39 +1,45 @@
 import React, { Component } from 'react';
 import Comment from './Comment.jsx';
+import uuid from 'uuid';
 
 class Modal extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      columnId: this.props.columnId,
-      cardNumber: this.props.cardNumber,
-      cardComments: this.props.cardComments
-    }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     columnId: this.props.columnId,
+  //     cardNumber: this.props.cardNumber,
+  //     cardComments: this.props.cardComments
+  //   }
+  // }
 
   render() {
        return (
         <div>
           <button 
-            type="button" 
-            className="btn btn-primary btn-sm" 
-            data-toggle="modal" 
-            data-target={"#exampleModal" + this.state.cardNumber}>
+            type = "button" 
+            className = "btn btn-primary btn-sm" 
+            data-toggle = "modal" 
+            data-target = {"#exampleModal" + this.props.cardId}
+            >
             Редактировать
           </button>
        
-          <div className="modal fade" id={"exampleModal"+ this.state.cardNumber} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
+          <div className="modal fade" id = {"exampleModal" + this.props.cardId} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role = "document">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLabel">Редактор карточки</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <h5 className="modal-title" id = "exampleModalLabel">Редактор карточки</h5>
+                  <button type = "button" className = "close" data-dismiss = "modal" aria-label = "Close">
                     <span aria-hidden="true">&times;</span>
                     
                   </button>
                 </div>
                 <div className="modal-body">
-                  <form onSubmit={this.props.handleSubmit} className="cardNameText" key='11'>
+                  <form 
+                  //  onSubmit={this.props.handleSubmit} 
+                   className="cardNameText" 
+                   key='11'
+                  >
                   
                   <div className="form-group">
                     <small>Автор карточки: {this.props.author}</small>
@@ -47,7 +53,9 @@ class Modal extends Component {
                       aria-describedby="emailHelp" 
                       placeholder="Введите имя" 
                       value={this.props.cardName}
-                      onChange={this.props.handleChange}
+                      onChange={ (event) => {
+                        this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value)
+                      } }
                     />
                     
                     
@@ -66,28 +74,36 @@ class Modal extends Component {
                   </div>
                  
                 </form>
-                <form className="cardComments" onSubmit={this.props.addComment} key='22'>
-                    <label htmlFor="cardComment">Добавление комментария</label>
-                    <textarea
-                      name="cardComment" 
-                      className="form-control" 
-                      id="cardComment" 
-                      rows="3"
-                    >
-                    </textarea>
-                    <button type="submit" className="btn btn-primary btn-sm mt-2">Сохранить комментарий</button>
+                <form 
+                  className="cardComments" 
+                  onSubmit = { (event) => {
+                    this.props.ADD_COMMENT(this.props.cardId, uuid(), event.target.cardComment.value);
+                    event.target.cardComment.value = '';
+                    event.preventDefault();
+                  }} 
+                  key='22'>
+                  <label htmlFor="cardComment">Добавление комментария</label>
+                  <textarea
+                    name="cardComment" 
+                    className="form-control" 
+                    id="cardComment" 
+                    rows="3"
+                  >
+                  </textarea>
+                  <button type="submit" className="btn btn-primary btn-sm mt-2">Сохранить комментарий</button>
                 </form>
                 <div className="comments" key='1'>
                                  
-                  {this.props.cardComments.map(item => (
+                  {this.props.comments.map(item => (
                     <Comment
-                      author = {this.props.author}
-                      comment = {item}
-                      key = {item.commentText}
-                      removeComment = {this.props.removeComment}
-                      updateComment = {this.props.updateComment}
-                      activateInputForUpdateComments = {this.props.activateInputForUpdateComments}
-                      saveUpdatingComment = {this.props.saveUpdatingComment}
+                      // author = {this.props.author}
+                      commentId = {item}
+                      key = {item}
+                      cardId = {this.props.cardId}
+                      // removeComment = {this.props.removeComment}
+                      // updateComment = {this.props.updateComment}
+                      // activateInputForUpdateComments = {this.props.activateInputForUpdateComments}
+                      // saveUpdatingComment = {this.props.saveUpdatingComment}
                       
 
                     />

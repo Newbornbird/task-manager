@@ -9,12 +9,28 @@ import rootReducer from './reducers';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const persistConfig = {
+  key: 'root',
+  storage,
+  stateReconciler: hardSet
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+let store = createStore(persistedReducer, applyMiddleware(thunk));
+
+let persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store = {store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>, document.getElementById('root'));
   
 
