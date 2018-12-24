@@ -1,3 +1,22 @@
+export function ENTER_AUTHOR_NAME(authorName) {
+  return {
+    type: 'ENTER_AUTHOR_NAME',
+    authorName
+  }
+}
+
+export function DEACTIVATE_MODAL_WELCOME(authorName) {
+  return dispatch => {
+    if(!authorName) {
+      return;
+    }
+    dispatch({
+      type: 'DEACTIVATE_MODAL_WELCOME',
+      
+    })
+  }
+}
+
 export function ADD_COLUMN (columnName) {
   return {
     type: 'ADD_COLUMN',
@@ -70,7 +89,11 @@ export function CHANGE_CARD_DESCRIPTION(cardId, cardDescription) {
 }
 
 export function ADD_COMMENT(cardId, commentId, commentText) {
+  
   return dispatch => {
+    if(!commentText) {
+      return
+    }
     dispatch({
       type: 'ADD_COMMENT_TOARRAY',
       cardId,
@@ -85,8 +108,26 @@ export function ADD_COMMENT(cardId, commentId, commentText) {
   }
 }
 
-export function UPDATE_COMMENT() {
+export function ACTIVATE_INPUT_FOR_CHANGING_COMMENT(commentId) {
+  return {
+    type: 'ACTIVATE_INPUT_FOR_CHANGING_COMMENT',
+    commentId
+  }
+}
 
+export function CHANGE_COMMENT(commentId, commentText) {
+  return {
+    type: 'CHANGE_COMMENT',
+    commentId,
+    commentText
+  }
+}
+
+export function DEACTIVATE_INPUT_FOR_CHANGING_COMMENT(commentId) {
+  return {
+    type: 'DEACTIVATE_INPUT_FOR_CHANGING_COMMENT',
+    commentId
+  }
 }
 
 export function DELETE_COMMENT(cardId, commentId) {

@@ -2,8 +2,10 @@ import { combineReducers } from 'redux';
 import { cardOperations } from './cardOperations';
 import { columnOperations } from './columnOperations';
 import { commentOperations } from './commentOperations';
+import { modalWelcomeOperations } from './modalWelcomeOperations';
 
 export const initialState = {
+  modalWelcome: {authorName: '', isActive: true},
   columns: [
     { columnId: 0, columnName: "TODO", cards: [] },
     { columnId: 1, columnName: "In  progress", cards: [] },
@@ -16,6 +18,7 @@ export const initialState = {
 }
 
 export default combineReducers({
+  modalWelcome: modalWelcomeOperations,
   columns: columnOperations,
   cards: cardOperations,
   comments: commentOperations

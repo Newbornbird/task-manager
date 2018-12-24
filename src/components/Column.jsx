@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import Card from './Card.jsx';
 import uuid from 'uuid';
 
@@ -75,10 +74,7 @@ class Column extends Component {
     
 //       componentDidUpdate() {
 //         this.saveStateToLocalStorage();
-//       }
-    
-
-    
+//       } 
     render() {
         return (
             <div className="col border">
@@ -97,18 +93,16 @@ class Column extends Component {
                
                 {this.props.cards.map( item => (
                     <Card 
-                        // removeCard={this.removeCard} 
                         cardId = {item} 
                         key = {item}
                         columnName = {this.props.columnName}
                         columnId = {this.props.columnId}
                         DELETE_CARD = {this.props.DELETE_CARD}
-                        // author = {this.props.author}
                     />))}
                 <button 
                     className="btn btn-primary" 
                     type="submit" 
-                    onClick={() => {this.props.ADD_CARD(this.props.columnId, uuid())}}>
+                    onClick={ () => {this.props.ADD_CARD(this.props.columnId, uuid()) }}>
                     +task
                 </button>
             </div>

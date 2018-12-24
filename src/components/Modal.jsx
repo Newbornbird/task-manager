@@ -36,13 +36,12 @@ class Modal extends Component {
                 </div>
                 <div className="modal-body">
                   <form 
-                  //  onSubmit={this.props.handleSubmit} 
-                   className="cardNameText" 
-                   key='11'
+                    className="cardNameText" 
+                    key='11'
                   >
                   
                   <div className="form-group">
-                    <small>Автор карточки: {this.props.author}</small>
+                    <small>Автор карточки: {this.props.authorName}</small>
                     <div><small>В колонке: {this.props.columnName}</small></div>
                    
                     <input
@@ -96,16 +95,10 @@ class Modal extends Component {
                                  
                   {this.props.comments.map(item => (
                     <Comment
-                      // author = {this.props.author}
+                      authorName = {this.props.authorName}
                       commentId = {item}
                       key = {item}
-                      cardId = {this.props.cardId}
-                      // removeComment = {this.props.removeComment}
-                      // updateComment = {this.props.updateComment}
-                      // activateInputForUpdateComments = {this.props.activateInputForUpdateComments}
-                      // saveUpdatingComment = {this.props.saveUpdatingComment}
-                      
-
+                      cardId = {this.props.cardId}               
                     />
                   ))}
                 </div>

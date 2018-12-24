@@ -145,7 +145,7 @@ render() {
         <div className="card-body">
           
           <Modal 
-            columnName = {this.props.cardInformation.columnName}
+            columnName = {this.props.columnName}
             cardName = {this.props.cardInformation.cardName} 
             cardDescription = {this.props.cardInformation.cardDescription} 
             comments = {this.props.cardInformation.comments}
@@ -153,19 +153,12 @@ render() {
             CHANGE_CARD_DESCRIPTION = {this.props.CHANGE_CARD_DESCRIPTION}
             cardId = {this.props.cardId}
             ADD_COMMENT = {this.props.ADD_COMMENT}
-            // handleChange = {this.handleChange}
-            // removeComment = {this.removeComment}
-            // cardNumber = {this.props.cardNumber}
-            // addComment = {this.addComment}
-            // updateComment = {this.updateComment}
-            // activateInputForUpdateComments = {this.activateInputForUpdateComments}
-            // saveUpdatingComment = {this.saveUpdatingComment}
-            // author = {this.props.author}
+            authorName = {this.props.authorName}
             
           />
           
           <div>
-            {/* <span className="badge badge-danger">Комментарии: {this.state.cardComments.length}</span> */}
+            <span className="badge badge-danger">Комментарии: {this.props.cardInformation.comments.length}</span>
           </div>
         </div>
       </div>
@@ -176,7 +169,8 @@ render() {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    cardInformation: state.cards[ownProps.cardId]
+    cardInformation: state.cards[ownProps.cardId],
+    authorName: state.modalWelcome.authorName
     
   }
 }
