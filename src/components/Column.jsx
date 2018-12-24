@@ -77,11 +77,11 @@ class Column extends Component {
 //       } 
     render() {
         return (
-            <div className="col border">
+            <div className="col border border-primary mr-4 rounded">
                 <input 
                     type="email" 
                     name="columnName"
-                    className="form-control border-0" 
+                    className="form-control form-control-plaintext border-0 form-control-sm mt-2" 
                     id="inputCardName" 
                     aria-describedby=""
                     value={this.props.columnName}
@@ -99,12 +99,14 @@ class Column extends Component {
                         columnId = {this.props.columnId}
                         DELETE_CARD = {this.props.DELETE_CARD}
                     />))}
-                <button 
-                    className="btn btn-primary" 
-                    type="submit" 
-                    onClick={ () => {this.props.ADD_CARD(this.props.columnId, uuid()) }}>
-                    +task
-                </button>
+                {/* <div className = "w-100 border"> */}
+                    <button 
+                        className="btn btn-primary btn-block mb-2 mt-3 w-100" 
+                        type="button" 
+                        onClick={ () => {this.props.ADD_CARD(this.props.columnId, uuid()) }}>
+                        +task
+                    </button>
+                {/* </div> */}
             </div>
                 
         )

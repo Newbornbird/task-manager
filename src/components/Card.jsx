@@ -120,30 +120,35 @@ class Card extends Component {
 
 render() {
   return (
-    <div className="card w-90 mt-2 mb-2">
+    <div className="card border-5 border-secondary bg-light mt-2 mb-2">
         
-          <button type="button" className="close btn btn-primary" aria-label="Close" 
+          <button type="button" className="close btn btn-primary w-25" aria-label="Close" 
             onClick={() => {
               this.props.DELETE_CARD(this.props.columnId, this.props.cardId)
             }}
           >
             <span aria-hidden="true">&times;</span>
           </button>
+          <p className="d-none bg-light">
+            {this.props.cardInformation.cardName}
+          </p>
           <input 
             type="email" 
             name="cardName"
-            className="form-control border-0" 
+            className="form-control form-control-sm mt-2 border-0 bg-light" 
             id="inputCardName" 
             aria-describedby=""
             value = {this.props.cardInformation.cardName}
             onChange = {(event) => {
-              this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value)}
+              this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value, event.type)}
             }
+            onBlur = { (event) => {
+              this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value, event.type)
+            }}
           >
           </input>
                  
         <div className="card-body">
-          
           <Modal 
             columnName = {this.props.columnName}
             cardName = {this.props.cardInformation.cardName} 
@@ -154,7 +159,6 @@ render() {
             cardId = {this.props.cardId}
             ADD_COMMENT = {this.props.ADD_COMMENT}
             authorName = {this.props.authorName}
-            
           />
           
           <div>

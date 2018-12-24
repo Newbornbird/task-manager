@@ -47,7 +47,7 @@ class Modal extends Component {
                     <input
                       name="cardName" 
                       type="text" 
-                      className="form-control border-0" 
+                      className="form-control form-control-plaintext form-control-sm mt-2 border-0" 
                       id="exampleInput" 
                       aria-describedby="emailHelp" 
                       placeholder="Введите имя" 
@@ -62,9 +62,9 @@ class Modal extends Component {
                   <div className="form-group">
                     <label htmlFor="cardTextArea">Описание</label>
                     <textarea
-                      name="cardText" 
+                      name="cardTextArea" 
                       onChange={this.props.handleChange}
-                      className="form-control border-0" 
+                      className="form-control form-control-plaintext border-0" 
                       id="cardTextArea" 
                       rows="3"
                       value={this.props.cardText}>

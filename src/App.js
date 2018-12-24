@@ -107,17 +107,14 @@ class App extends Component {
                 DELETE_CARD = {this.props.DELETE_CARD}
                 authorName = {this.props.modalWelcome.authorName}
               />))
-            }
-            <button 
+            }        
+          </div>
+          {/* <button 
               className="btn btn-primary btn-sm" 
               type="submit" 
               onClick={() => { this.props.ADD_COLUMN('Введите название')} }>
               +column
-            </button>
-            {/* <button className="btn btn-primary btn-sm" type="submit" onClick={this.clear}>
-              clear
-            </button>          */}
-          </div>
+          </button> */}
         </div>
       </div>
     )

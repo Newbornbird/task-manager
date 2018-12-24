@@ -71,12 +71,31 @@ export function ADD_COLUMN_INFORMATION(cardId) {
   }
 }
 
-export function CHANGE_CARDNAME(cardId, cardName) {
-  return {
-    type: 'CHANGE_CARDNAME',
-    cardId,
-    cardName
-  }
+// export function CHANGE_CARDNAME(cardId, cardName) {
+//   return {
+//     type: 'CHANGE_CARDNAME',
+//     cardId,
+//     cardName
+//   }
+// }
+
+export function CHANGE_CARDNAME(cardId, cardName, eventType) {
+  return dispatch => {
+    if(eventType === 'blur' && !cardName){
+      dispatch({
+        type: 'CHANGE_CARDNAME',
+        cardId,
+        cardName: 'Введите название'
+
+      })
+    } else {
+      dispatch({
+        type: 'CHANGE_CARDNAME',
+        cardId,
+        cardName
+      })
+    }
+  }  
 }
 
 export function CHANGE_CARD_DESCRIPTION(cardId, cardDescription) {
