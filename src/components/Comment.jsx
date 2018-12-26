@@ -7,42 +7,48 @@ import { DELETE_COMMENT, ACTIVATE_INPUT_FOR_CHANGING_COMMENT,
 class Comment extends Component {
   render() {
        return (
-        <div className="comment border mt-2 mb-2">
-          <h5 className="commentAuthor">{this.props.authorName + ' прокомментировал:'}</h5>
+        <div className="comment border mt-2 mb-2 p-2 bg-white">
+          <p className="commentAuthor" style={{fontSize: '14px'}}>
+            {this.props.authorName + ' прокомментировал:'}
+          </p>
           <textarea
-            className = {this.props.commentInformation.inputForUpdatingComment ? "d-block" : "d-none"} 
+            style={{ resize: 'none', fontSize: '14px'}}
+            className = {this.props.commentInformation.inputForUpdatingComment ? "d-block form-control font-italic" : "d-none"} 
             name = "inputForUpdatingComment" 
             value = {this.props.commentInformation.commentText} 
             id = "" 
-            cols = "62" 
+            cols = "50" 
             rows = "2"
             onChange = { (event) => {this.props.CHANGE_COMMENT(this.props.commentId, event.target.value)} }
             >
           </textarea>
           <p 
-            className = {this.props.commentInformation.inputForUpdatingComment ? "d-none commentText" : "d-block commentText"}
+            className = {this.props.commentInformation.inputForUpdatingComment ? "d-none commentText" : "d-block commentText font-italic"}
           >
-            {this.props.commentInformation.commentText}
+            <span style={{fontSize: '14px'}}>"{this.props.commentInformation.commentText}"</span>
           </p>
 
-          <div className="btn-group" role="group" aria-label="Basic example">
-            <button 
+          <div className="btn-group mt-2" role="group" aria-label="Basic example">
+            <button
+              style={{fontSize: '14px'}} 
               type="button" 
-              className="btn btn-secondary btn-sm" 
+              className="btn btn-link" 
               onClick={()=> {this.props.DELETE_COMMENT(this.props.cardId, this.props.commentId)} }
             >
               Удалить
             </button>
-            <button 
+            <button
+              style={{fontSize: '14px'}} 
               type="button" 
-              className="btn btn-secondary btn-sm" 
+              className="btn btn-link" 
               onClick = { () => {this.props.ACTIVATE_INPUT_FOR_CHANGING_COMMENT(this.props.commentId)} }
             >
               Изменить
             </button>
-            <button 
+            <button
+              style={{fontSize: '14px'}} 
               type="button" 
-              className={this.props.commentInformation.inputForUpdatingComment ? "d-block btn btn-secondary btn-sm" : "d-none btn btn-secondary btn-sm"} 
+              className={this.props.commentInformation.inputForUpdatingComment ? "btn btn-link" : "btn btn-link disabled"} 
               onClick = { () => {this.props.DEACTIVATE_INPUT_FOR_CHANGING_COMMENT(this.props.commentId)} }
             >
               Сохранить

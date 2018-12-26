@@ -7,7 +7,8 @@ export function cardOperations (state = initialState.cards, action) {
       copyOfState[action.cardId] = { 
         columnId: action.columnId, 
         cardName: 'Введите название',
-        cardDescription: 'Введите описание',
+        cardDescription: 'Введите сюда дополнительное описание',
+        cardisActive: false,
         comments: []
       }
       return copyOfState;
@@ -23,7 +24,6 @@ export function cardOperations (state = initialState.cards, action) {
       return { ...state, [action.cardId]: { ...state[action.cardId], cardDescription: action.cardDescription } };
 
     case 'ADD_COMMENT_TOARRAY':
-     
       return { ...state, [action.cardId]: { ...state[action.cardId], comments: [ ...state[action.cardId].comments, action.commentId ] } }
       // copyOfState[action.cardId].comments.push(action.commentId);
       // return copyOfState;
