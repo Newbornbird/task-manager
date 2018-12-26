@@ -71,14 +71,14 @@ class Modal extends Component {
                     /> 
                   </div>
                   <div>
-                    <span class="badge badge-secondary">Карточку сотворил {this.props.authorName}</span>
+                    <span className="badge badge-secondary">Карточку сотворил {this.props.authorName}</span>
                   </div>
                   <div>
-                    <span class="badge badge-secondary">Задание находится на этапе: {this.props.columnName}</span>                
+                    <span className="badge badge-secondary">Задание находится на этапе: {this.props.columnName}</span>                
                   </div>
                   <div className="form-group mt-4">
                     <label className="font-weight-bold" htmlFor={'cardTextArea' + this.props.cardId}>Описание</label>
-                    <p className={this.state.inputForCardDescriptionIsActive ? "d-none" : "border rounded bg-white"}
+                    <p className={this.state.inputForCardDescriptionIsActive ? "d-none" : "border rounded bg-white p-2"}
                       onClick = {this.makeInputActive}>
                       {this.props.cardDescription}
                     </p>
@@ -89,7 +89,7 @@ class Modal extends Component {
                       id = {'cardTextArea' + this.props.cardId} 
                       rows = "3"
                       value = {this.props.cardDescription}
-                      onChange = {this.props.CHANGE_CARD_DESCRIPTION}
+                      onChange = {(event) => {this.props.CHANGE_CARD_DESCRIPTION(this.props.cardId, event.target.value)}}
                       onBlur = {this.makeInputUnActive}
                     >
                     </textarea>

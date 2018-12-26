@@ -8,7 +8,6 @@ export function cardOperations (state = initialState.cards, action) {
         columnId: action.columnId, 
         cardName: 'Введите название',
         cardDescription: 'Введите сюда дополнительное описание',
-        cardisActive: false,
         comments: []
       }
       return copyOfState;

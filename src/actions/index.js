@@ -100,7 +100,7 @@ export function CHANGE_CARDNAME(cardId, cardName, eventType) {
 
 export function CHANGE_CARD_DESCRIPTION(cardId, cardDescription) {
   return {
-    type: 'CHANGE_CARDNAME',
+    type: 'CHANGE_CARD_DESCRIPTION',
     cardId,
     cardDescription
   }
