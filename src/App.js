@@ -3,7 +3,7 @@ import ModalWelcome from './components/ModalWelcome.jsx';
 import Column from './components/Column.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { CHANGE_COLUMNNAME, ADD_COLUMN, ADD_CARD, DELETE_CARD, 
+import { CHANGE_COLUMN_NAME, ADD_COLUMN, ADD_CARD, DELETE_CARD, 
   ENTER_AUTHOR_NAME, DEACTIVATE_MODAL_WELCOME } from './actions';
 import './App.css';
 
@@ -26,7 +26,7 @@ class App extends Component {
                 columnId = {item.columnId} 
                 columnName = {item.columnName}
                 cards = {item.cards}
-                CHANGE_COLUMNNAME = {this.props.CHANGE_COLUMNNAME}
+                CHANGE_COLUMN_NAME = {this.props.CHANGE_COLUMN_NAME}
                 ADD_CARD = {this.props.ADD_CARD}
                 DELETE_CARD = {this.props.DELETE_CARD}
                 authorName = {this.props.modalWelcome.authorName}
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     ADD_COLUMN: bindActionCreators(ADD_COLUMN, dispatch),
-    CHANGE_COLUMNNAME: bindActionCreators(CHANGE_COLUMNNAME, dispatch),
+    CHANGE_COLUMN_NAME: bindActionCreators(CHANGE_COLUMN_NAME, dispatch),
     ADD_CARD: bindActionCreators(ADD_CARD, dispatch),
     DELETE_CARD: bindActionCreators(DELETE_CARD, dispatch),
     ENTER_AUTHOR_NAME: bindActionCreators(ENTER_AUTHOR_NAME, dispatch),

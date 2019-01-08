@@ -13,10 +13,10 @@ class Column extends Component {
                     name="columnName"
                     className="form-control form-control-plaintext border-0 form-control-sm mt-2" 
                     id="inputCardName" 
-                    aria-describedby=""
+                    // aria-describedby=""
                     value={this.props.columnName}
                     onChange={(event)=> { 
-                        this.props.CHANGE_COLUMNNAME(event.target.value, this.props.columnId) 
+                        this.props.CHANGE_COLUMN_NAME(event.target.value, this.props.columnId) 
                     }}
                 >
                 </input>

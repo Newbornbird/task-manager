@@ -59,6 +59,7 @@ class Modal extends Component {
                   <div className="form-group">
                     <label className="font-weight-bold" htmlFor={'cardName' + this.props.cardId}>Название</label>             
                     <input
+                      style={{fontSize: '16px'}}
                       name="cardName" 
                       type="text" 
                       className="form-control form-control-sm mt-2 bg-white border" 
@@ -66,7 +67,7 @@ class Modal extends Component {
                       aria-describedby="emailHelp" 
                       value={this.props.cardName}
                       onChange={ (event) => {
-                        this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value)
+                        this.props.CHANGE_CARD_NAME(this.props.cardId, event.target.value)
                       } }
                     /> 
                   </div>

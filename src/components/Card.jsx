@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { CHANGE_CARDNAME, CHANGE_CARD_DESCRIPTION, ADD_COMMENT } from '../actions';
+import { CHANGE_CARD_NAME, CHANGE_CARD_DESCRIPTION, ADD_COMMENT } from '../actions';
 import Modal from './Modal.jsx';
-
 
 class Card extends Component {
   constructor(props) {
@@ -13,6 +12,7 @@ class Card extends Component {
       inputForChangingCardNameIsActive: false
       
     }
+    
   }
 
   makeCardActive = () => {
@@ -59,23 +59,24 @@ class Card extends Component {
               <span aria-hidden="true">&times;</span>
             </button> */}
             <p className = { this.state.inputForChangingCardNameIsActive ? "d-none" : this.state.cardIsActive ? "d-block bg-light m-2" : "d-block bg-white m-2" }
-              onClick = { this.makeInputActive }
+              onClick = {this.makeInputActive}
             >
               {this.props.cardInformation.cardName}
             </p>
             <input 
-              type="text" 
+              type="text"
+              
               name="cardName"
               className = { !this.state.inputForChangingCardNameIsActive ? "d-none" : "form-control form-control-sm mt-2 bg-white" }  
               autoFocus
               id="inputCardName" 
-              aria-describedby=""
+              
               value = {this.props.cardInformation.cardName}
               onChange = {(event) => {
-                this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value, event.type)}
+                this.props.CHANGE_CARD_NAME(this.props.cardId, event.target.value, event.type)}
               }
               onBlur = { (event) => {
-                this.props.CHANGE_CARDNAME(this.props.cardId, event.target.value, event.type);
+                this.props.CHANGE_CARD_NAME(this.props.cardId, event.target.value, event.type);
                 this.makeInputUnActive()
               }}
             >
@@ -88,7 +89,7 @@ class Card extends Component {
               cardName = {this.props.cardInformation.cardName} 
               cardDescription = {this.props.cardInformation.cardDescription} 
               comments = {this.props.cardInformation.comments}
-              CHANGE_CARDNAME = {this.props.CHANGE_CARDNAME}
+              CHANGE_CARD_NAME = {this.props.CHANGE_CARD_NAME}
               CHANGE_CARD_DESCRIPTION = {this.props.CHANGE_CARD_DESCRIPTION}
               cardId = {this.props.cardId}
               ADD_COMMENT = {this.props.ADD_COMMENT}
@@ -116,7 +117,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    CHANGE_CARDNAME: bindActionCreators(CHANGE_CARDNAME, dispatch),
+    CHANGE_CARD_NAME: bindActionCreators(CHANGE_CARD_NAME, dispatch),
     CHANGE_CARD_DESCRIPTION: bindActionCreators(CHANGE_CARD_DESCRIPTION, dispatch),
     ADD_COMMENT: bindActionCreators(ADD_COMMENT, dispatch)
     
